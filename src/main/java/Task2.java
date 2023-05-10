@@ -1,7 +1,9 @@
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,33 +14,32 @@ lines should be sorted in an ascending order.
  */
 public class Task2 {
 
-    private List<String> readInput() throws IOException {
-        // Creating an object of BufferedReader class
-        BufferedReader bi = new BufferedReader(
-                new InputStreamReader(System.in));
-        // Reading input a string
-        return Arrays.asList(bi.readLine().split(" "));
-
-    }
-
-    public void calculate(){
-        try {
-            List<String> strNums = readInput();
-            List<Integer> originalList = strNums.stream()
-                    .map(Integer::valueOf)                      //convert to integer
-                    .sorted()                                   //here we have sorted answer
-                    .collect(Collectors.toList());
-            for (int i = 0; i < originalList.size(); i++) {     // because it's sorted just go thru
-                for (int j = i + 1; j < originalList.size(); j++) {
-                    if (originalList.get(i) + originalList.get(j) == 13) {
-                        System.out.println(originalList.get(i) + " " + originalList.get(j)); // print answer
-                    }
+    public List<Point> calculate(List<Integer> originalList){
+        List<Point> pairs = new ArrayList<>();
+        Collections.sort(originalList);
+        for (int i = 0; i < originalList.size(); i++) {     // because it's sorted just go thru
+            for (int j = i + 1; j < originalList.size(); j++) {
+                if (originalList.get(i) + originalList.get(j) == 13) {
+                    Point pair = new Point(originalList.get(i),originalList.get(j));
+                    pairs.add(pair);
                 }
             }
-        }catch (IOException e){
-            System.out.println("error reading input");
-            System.out.println(e.getMessage());
         }
+        return pairs;
     }
 
+    public List<Integer> readinput(){
+        List<Integer> integerList = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextInt()){
+            integerList.add(scanner.nextInt());
+        }
+        return integerList;
+    }
+
+    public void printAnswer(List<Point> pairs){
+        pairs.forEach(pair ->{
+            System.out.println(pair.x + " " + pair.y);
+        });
+    }
 }

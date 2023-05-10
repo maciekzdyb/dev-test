@@ -1,3 +1,5 @@
+import java.awt.*;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -17,7 +19,9 @@ public class Main {
                 case "2" -> {
                     System.out.println("Taks 2, enter input:");
                     Task2 task2 = new Task2();
-                    task2.calculate();
+                    List<Integer> integerList = task2.readinput();
+                    List<Point> answerList = task2.calculate(integerList);
+                    task2.printAnswer(answerList);
                 }
                 case "3" -> {
                     System.out.println("Taks 3, enter input:");
