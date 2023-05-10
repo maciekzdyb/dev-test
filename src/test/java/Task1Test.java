@@ -22,4 +22,15 @@ class Task1Test {
         assertEquals(expected,actual);
     }
 
+    @Test
+    void calculateShouldReturnIntegersList() {
+        List<String> inputList = new ArrayList<>(List.of("1", "10", "20", "20", "2", "5"));
+        List<Integer> expected = new ArrayList<>(List.of(1, 2, 5, 10, 20));
+
+        Task1 task1 = new Task1();
+        List<Integer> actual = task1.calculate(inputList);
+
+        assertEquals(expected,actual);
+
+    }
 }
