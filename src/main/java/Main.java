@@ -14,7 +14,9 @@ public class Main {
                 case "1" -> {
                     System.out.println("Taks 1, enter input:");
                     Task1 task1 = new Task1();
-                    task1.calculate();
+                    List<String> inputList = task1.readInputByScanner();
+                    List<Integer> answerList = task1.calculate(inputList);
+                    task1.printAnswer(answerList,inputList.size());
                 }
                 case "2" -> {
                     System.out.println("Taks 2, enter input:");
